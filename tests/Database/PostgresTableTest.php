@@ -3,6 +3,7 @@
 namespace Kdabrow\TimeMachinePostgres\Tests\Database;
 
 use Kdabrow\TimeMachine\Database\Column;
+use Kdabrow\TimeMachine\TimeTraveller;
 use Kdabrow\TimeMachinePostgres\Database\PostgresTable;
 use Kdabrow\TimeMachinePostgres\Tests\Mocks\ClassThatExtendsModel;
 use Kdabrow\TimeMachinePostgres\Tests\TestCase;
@@ -14,7 +15,7 @@ class PostgresTableTest extends TestCase
     {
         $table = new PostgresTable();
 
-        $result = $table->selectUpdatableFields(new ClassThatExtendsModel());
+        $result = $table->selectUpdatableFields(new TimeTraveller(new ClassThatExtendsModel()));
 
         $this->assertCount(4, $result);
         $this->assertInstanceOf(Column::class, $result['column_1']);
